@@ -54,5 +54,6 @@ model IdempotencyKey {
   id        String   @id @default(cuid())  // unique primary key
   key       String   @unique               // the idempotency key itself
   data      Json                             // store the cached response
+  response  Json?
   createdAt DateTime @default(now())
 }
