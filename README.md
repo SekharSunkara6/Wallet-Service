@@ -20,6 +20,22 @@ Key Features:
 * Prevents negative balances, lost transactions, or race conditions
 
 ---
+## 🛠 Tech Stack
+
+| Layer             | Technology / Tool         |
+| ----------------- | ------------------------- |
+| Backend           | Node.js, TypeScript       |
+| Framework         | Express.js                |
+| Database          | PostgreSQL                |
+| ORM / DB Toolkit  | Prisma                    |
+| Authentication    | JWT (if applicable)       |
+| Logging           | Winston / Custom Logger   |
+| API Documentation | Swagger (OpenAPI 3.0)     |
+| Containerization  | Docker, Docker Compose    |
+| Deployment        | Render                    |
+| Testing           | Postman                   |
+
+---
 
 ## ⚡ Setup & Installation
 
