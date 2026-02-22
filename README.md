@@ -1,9 +1,9 @@
 # 🪙 Wallet Service API
 
-**Version:** 1.0.0
-**Specification:** OAS 3.0
-**Live URL:** [https://wallet-service-ny2w.onrender.com](https://wallet-service-ny2w.onrender.com)
-**API Docs:** [https://wallet-service-ny2w.onrender.com/docs](https://wallet-service-ny2w.onrender.com/docs)
+* **Version:** 1.0.0
+* **Specification:** OAS 3.0
+* **Live URL:** [https://wallet-service-ny2w.onrender.com](https://wallet-service-ny2w.onrender.com)
+* **API Docs:** [https://wallet-service-ny2w.onrender.com/docs](https://wallet-service-ny2w.onrender.com/docs)
 
 ---
 
@@ -13,11 +13,11 @@ This is a **ledger-based wallet service** designed for high-traffic applications
 
 Key Features:
 
-* Manage user credits (Gold Coins, Reward Points, etc.) in a **closed-loop system** (cannot transfer outside the app)
-* **Top up**, **bonus**, and **spend** wallet credits
-* **Ledger-based double-entry system** for auditability
-* **Concurrency-safe** and **idempotent** transactions
-* Prevents negative balances, lost transactions, or race conditions
+* Manage user credits (Gold Coins, Reward Points, etc.) in a **closed-loop system** (cannot transfer outside the app).
+* **Top up**, **bonus**, and **spend** wallet credits.
+* **Ledger-based double-entry system** for auditability.
+* **Concurrency-safe** and **idempotent** transactions.
+* Prevents negative balances, lost transactions, or race conditions.
 
 ---
 
