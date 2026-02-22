@@ -1,0 +1,69 @@
+{
+  "info": {
+    "name": "Wallet Service - Plug and Play",
+    "description": "Ready-to-use Postman collection for Dino Ventures Wallet Service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Top-up Alice 100 Gold Coins",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Idempotency-Key", "value": "topup-alice-100" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"11111111-1111-1111-1111-111111111111\",\n  \"assetId\": \"aaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa\",\n  \"amount\": 100\n}"
+        },
+        "url": { "raw": "http://localhost:4000/wallet/topup", "protocol": "http", "host": ["localhost"], "port": "4000", "path": ["wallet","topup"] }
+      }
+    },
+    {
+      "name": "Bonus Bob 50 Gold Coins",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"22222222-2222-2222-2222-222222222222\",\n  \"assetId\": \"aaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa\",\n  \"amount\": 50\n}"
+        },
+        "url": { "raw": "http://localhost:4000/wallet/bonus", "protocol": "http", "host": ["localhost"], "port": "4000", "path": ["wallet","bonus"] }
+      }
+    },
+    {
+      "name": "Alice spends 30 Gold Coins",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Idempotency-Key", "value": "spend-alice-30" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": \"11111111-1111-1111-1111-111111111111\",\n  \"assetId\": \"aaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa\",\n  \"amount\": 30\n}"
+        },
+        "url": { "raw": "http://localhost:4000/wallet/spend", "protocol": "http", "host": ["localhost"], "port": "4000", "path": ["wallet","spend"] }
+      }
+    },
+    {
+      "name": "Get Alice Balance",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "http://localhost:4000/wallet/11111111-1111-1111-1111-111111111111/aaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/balance", "protocol": "http", "host": ["localhost"], "port": "4000", "path": ["wallet","11111111-1111-1111-1111-111111111111","aaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa","balance"] }
+      }
+    },
+    {
+      "name": "Get Bob Balance",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "http://localhost:4000/wallet/22222222-2222-2222-2222-222222222222/aaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/balance", "protocol": "http", "host": ["localhost"], "port": "4000", "path": ["wallet","22222222-2222-2222-2222-222222222222","aaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa","balance"] }
+      }
+    }
+  ]
+}

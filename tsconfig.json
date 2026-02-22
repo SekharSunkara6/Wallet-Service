@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",    // <-- compiled JS goes here
+    "rootDir": "src",    // <-- TS source files
+    "module": "CommonJS",
+    "target": "ES2022",
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*"]
+}
