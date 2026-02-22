@@ -27,58 +27,102 @@ export class WalletService {
   return result._sum.amount || 0;
 }
 
-  static async creditUser(
-    userId: string,
-    assetId: string,
-    amount: number,
-    reference: string
-  ) {
-    return prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+static async creditUser(
+  userId: string,
+  assetId: string,
+  amount: number,
+  reference: string
+) {
+  return prisma.$transaction(async (tx: Prisma.TransactionClient) => {
 
-      let wallet = await tx.wallet.findFirst({
-  where: { userId, assetId },
-});
+    // 1️⃣ Ensure user exists
+    await tx.user.upsert({
+      where: { id: userId },
+      update: {},
+      create: {
+        id: userId,
+        name: userId,
+        email: `${userId}@test.com`,
+      },
+    });
 
-if (!wallet) {
-  wallet = await tx.wallet.create({
-    data: {
-      userId,
-      assetId,
-    },
+    // 2️⃣ Ensure asset exists
+    await tx.asset.upsert({
+      where: { id: assetId },
+      update: {},
+      create: {
+        id: assetId,
+        name: assetId,
+      },
+    });
+
+    // 3️⃣ Ensure system user exists
+    await tx.user.upsert({
+      where: { id: "system" },
+      update: {},
+      create: {
+        id: "system",
+        name: "System",
+        email: "system@internal.com",
+      },
+    });
+
+    // 4️⃣ Ensure system wallet exists
+    let systemWallet = await tx.wallet.findFirst({
+      where: { userId: "system", assetId },
+    });
+
+    if (!systemWallet) {
+      systemWallet = await tx.wallet.create({
+        data: {
+          userId: "system",
+          assetId,
+        },
+      });
+    }
+
+    // 5️⃣ Ensure user wallet exists
+    let wallet = await tx.wallet.findFirst({
+      where: { userId, assetId },
+    });
+
+    if (!wallet) {
+      wallet = await tx.wallet.create({
+        data: {
+          userId,
+          assetId,
+        },
+      });
+    }
+
+    // 6️⃣ Create ledger entries
+    await tx.ledgerEntry.createMany({
+      data: [
+        {
+          walletId: wallet.id,
+          amount,
+          type: LedgerType.CREDIT,
+          reference,
+        },
+        {
+          walletId: systemWallet.id,
+          amount: -amount,
+          type: LedgerType.DEBIT,
+          reference,
+        },
+      ],
+    });
+
+    const balance = await this.getBalance(wallet.id, tx);
+
+    logger.info(`Topup: User ${userId} credited ${amount} ${assetId}`);
+
+    return {
+      walletId: wallet.id,
+      balance,
+    };
   });
 }
-
-      const systemWallet = await tx.wallet.findFirst({
-  where: { userId: "system", assetId },
-});
-
-      if (!systemWallet) throw new Error("System wallet not found");
-
-      await tx.ledgerEntry.createMany({
-  data: [
-    {
-      walletId: wallet.id,
-      amount,
-      type: LedgerType.CREDIT,
-      reference,
-    },
-    {
-      walletId: systemWallet.id,
-      amount: -amount,
-      type: LedgerType.DEBIT,
-      reference,
-    },
-  ],
-});
-
-      const balance = await this.getBalance(wallet.id, tx);
-      logger.info(`Topup: User ${userId} credited ${amount} ${assetId}`);
-      return {
-        walletId: wallet.id,
-        balance,
-      };
-    });
-  }
 
   static async debitUser(
     userId: string,
