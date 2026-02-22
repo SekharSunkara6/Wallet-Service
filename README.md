@@ -13,11 +13,11 @@ This is a **ledger-based wallet service** designed for high-traffic applications
 
 Key Features:
 
-* Manage user credits (Gold Coins, Reward Points, etc.) in a **closed-loop system** (cannot transfer outside the app).
-* **Top up**, **bonus**, and **spend** wallet credits.
-* **Ledger-based double-entry system** for auditability.
-* **Concurrency-safe** and **idempotent** transactions.
-* Prevents negative balances, lost transactions, or race conditions.
+* Manage user credits (Gold Coins, Reward Points, etc.) in a **closed-loop system** (cannot transfer outside the app)
+* **Top up**, **bonus**, and **spend** wallet credits
+* **Ledger-based double-entry system** for auditability
+* **Concurrency-safe** and **idempotent** transactions
+* Prevents negative balances, lost transactions, or race conditions
 
 ---
 
@@ -309,8 +309,8 @@ curl -X GET "https://wallet-service-ny2w.onrender.com/wallet/userA/INR/balance" 
 
 ## 🔒 Concurrency & Idempotency
 
-* All **credit/debit operations** are wrapped in `Prisma $transaction` to ensure **atomicity**.
-* **Idempotency keys** prevent duplicate transactions if the same request is retried.
+* All **credit/debit operations** are wrapped in `Prisma $transaction` to ensure **atomicity**
+* **Idempotency keys** prevent duplicate transactions if the same request is retried
 
 ---
 
@@ -319,7 +319,7 @@ curl -X GET "https://wallet-service-ny2w.onrender.com/wallet/userA/INR/balance" 
 * Implements **double-entry ledger system**:
 
   * Each transaction generates a **CREDIT** in user wallet and **DEBIT** in system wallet
-* Enables **full audit trail**, prevents **negative balances**, ensures **data consistency**.
+* Enables **full audit trail**, prevents **negative balances**, ensures **data consistency**
 
 ---
 
@@ -334,13 +334,19 @@ curl -X GET "https://wallet-service-ny2w.onrender.com/wallet/userA/INR/balance" 
 }
 ```
 
-* Basic logging records all top-ups, spends, and bonuses in `logger.ts`.
+* Basic logging records all top-ups, spends, and bonuses in `logger.ts`
 
 ---
 
 ## ☁ Deployment
 
 * **Hosted on Render:** [https://wallet-service-ny2w.onrender.com](https://wallet-service-ny2w.onrender.com)
-* Dockerized deployment ensures **easy reproducibility**.
+* Dockerized deployment ensures **easy reproducibility**
 
+---
 
+## 🧑‍💻 Author
+
+**Name:** PurnaSekhar Sunkara
+**GitHub:** [https://github.com/SekharSunkara6](https://github.com/SekharSunkara6)
+**Portfolio:** [https://sekharsunkaraportfolio.netlify.app/](https://sekharsunkaraportfolio.netlify.app/)
