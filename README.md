@@ -347,6 +347,6 @@ curl -X GET "https://wallet-service-ny2w.onrender.com/wallet/userA/INR/balance" 
 
 ## 🧑‍💻 Author
 
-**Name:** PurnaSekhar Sunkara
-**GitHub:** [https://github.com/SekharSunkara6](https://github.com/SekharSunkara6)
-**Portfolio:** [https://sekharsunkaraportfolio.netlify.app/](https://sekharsunkaraportfolio.netlify.app/)
+* **Name:** PurnaSekhar Sunkara
+* **GitHub:** [https://github.com/SekharSunkara6](https://github.com/SekharSunkara6)
+* **Portfolio:** [https://sekharsunkaraportfolio.netlify.app/](https://sekharsunkaraportfolio.netlify.app/)
