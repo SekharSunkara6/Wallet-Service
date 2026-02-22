@@ -1,15 +1,19 @@
-import prisma from "../../config/db";
+// idempotency.service.ts
 
-export async function checkIdempotency(key: string) {
-  const record = await prisma.idempotencyKey.findUnique({ where: { key } });
-  return record ? JSON.parse(record.response) : null;
+import db from "../../config/db";
+
+// Check if idempotency key exists
+export async function checkIdempotency(key: string): Promise<JsonValue | null> {
+  const record = await db.idempotencyKey.findUnique({ where: { key } });
+  return record?.data || null; // <-- use 'data' here
 }
 
-export async function storeIdempotency(key: string, response: any) {
-  await prisma.idempotencyKey.create({
+// Store response against idempotency key
+export async function storeIdempotency(key: string, result: any) {
+  return db.idempotencyKey.create({
     data: {
       key,
-      response: JSON.stringify(response),
+      data: result, // <-- use 'data' instead of 'response'
     },
   });
 }
