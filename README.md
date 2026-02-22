@@ -74,7 +74,7 @@ npx ts-node prisma/seed.ts
 
 Seed script creates:
 
-* **Assets:** USD, BTC, ETH
+* **Assets:** INR, USD, BTC, ETH
 * **Users:** Alice, Bob, Charlie, System
 * **User Wallets:** Initial balances
 * **System Wallets:** For ledger operations
